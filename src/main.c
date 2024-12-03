@@ -8,7 +8,7 @@
 #include <sys/time.h>
 #include <time.h>
 #include <unistd.h>
-#define N 10
+#define N 10000
 #define SLEEP_TIME_MS 0
 #define DT 0.1f
 #define H 1500
@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
   w = *new_window_description(W, H);
 
   for (size_t i = 0; i < N; i++) {
-    float weight = 10000.0f * randomf();
+    float weight = 100.0f * randomf();
     particles[i] = *new_particle(
         randomf() * W - W / 2.0f, randomf() * H - H / 2.0f,
         MAX_SPEED * 2 * (randomf() - 0.5f), MAX_SPEED * 2 * (randomf() - 0.5f),

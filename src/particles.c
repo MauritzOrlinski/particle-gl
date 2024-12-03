@@ -7,7 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define DAMPF 0.8
-#define THRESHOLD 0.95
+#define THRESHOLD 0.05
+#define G -9.81
 #define likely(x) __builtin_expect(!!(x), 1)
 #define unlikely(x) __builtin_expect(!!(x), 0)
 
@@ -31,7 +32,7 @@ void handle_collisions(particle *particles, size_t n) {
       }
       float distance =
           dist(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
-      if (distance <= min_dist) {
+      if (likely(distance <= min_dist)) {
         float mass_sum = particles[i].m + particles[j].m;
 
         float sub_res1 = ((particles[i].vx - particles[j].vx) *
@@ -75,6 +76,7 @@ void handle_collisions(particle *particles, size_t n) {
 void update_particle(particle *p, float dt, WindowDescr *window) {
   p->x += p->vx * dt;
   p->y += p->vy * dt;
+  p->vy += G * dt;
   if (p->x < window->width / -2.0f || p->x > window->width / 2.0f) {
     p->x = window->width / 2.0f * (p->x < 0 ? -1 : 1);
     p->vx *= -1 * DAMPF;

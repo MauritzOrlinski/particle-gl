@@ -4,10 +4,9 @@
 #define PI 3.1415926535f
 
 void draw_circle(float cx, float cy, float r) {
-  glBegin(GL_POINTS);
-  glVertex2f(cx, cy);
-  size_t n = 2 * PI * r * 5 + 1;
-  for (size_t i = 0; i < n; i++) {
+  glBegin(GL_POLYGON);
+  size_t n = 2 * PI * r + 1;
+  for (size_t i = 0; i <= n; i += 2) {
     glVertex2f(cx + (r * cos(i * (2.0f * PI) / n)),
                cy + (r * sin(i * (2.0f * PI) / n)));
   }

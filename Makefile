@@ -10,7 +10,7 @@ INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS := $(INC_FLAGS) -MMD -MP
-CFLAGS := -O3 -g -march=native -pedantic -Wall -Wextra -Werror \
+CFLAGS := -Ofast -g -march=native -pedantic -Wall -Wextra -Werror \
 	-Wno-overlength-strings -Wformat=2 -Wswitch-default -Wswitch-enum  \
 	-Wbad-function-cast -Wstrict-overflow=4 -Wstrict-prototypes -Winline \
 	-Wundef -Wnested-externs -Wcast-qual -Wshadow -Wunreachable-code \
